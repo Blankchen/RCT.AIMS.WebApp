@@ -1,0 +1,9 @@
+<app-table
+  title="Asset Categories"
+  [metaList]="metaList"
+  [listOfData]="categories$ | async"
+  [message]="message$ | async"
+  (create)="save($event)"
+  (update)="save($event)"
+  (delete)="delete($event)"
+></app-table>

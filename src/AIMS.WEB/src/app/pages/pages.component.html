@@ -1,0 +1,74 @@
+﻿<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="JavaScript:Void(0);" [routerLink]="['dashboard']">
+        <img src="assets/images/logo.jpg" alt="logo">
+        <h1>RCT System</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['dashboard']">Dashboard</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="System" nzIcon="user">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['system/users']">Users</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Asset" nzIcon="shop">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['asset/authors']">Authors</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['asset/categories']">Categories</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['asset/assets']">Assets</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Circulation" nzIcon="sync">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['circulation/issue']">Issue</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['circulation/return']">Return</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Reports" nzIcon="history">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['reports/history']">History</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb [nzAutoGenerate]="true">
+        <nz-breadcrumb-item>
+          <i nz-icon nzType="home"></i>
+        </nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

@@ -1,0 +1,11 @@
+
+<app-table
+  title="System Users"
+  [metaList]="metaList"
+  [listOfData]="users$ | async"
+  [message]="message$ | async"
+  (create)="save($event)"
+  (update)="save($event)"
+  (delete)="delete($event)"
+  (clickLink)="onclickLink($event)"
+></app-table>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RCT.AIMS.WebApp</id>
+    <version>1.0.0.0</version>
+    <authors>Redcypress</authors>
+    <owners>RedCypress</owners>
+    <description>RCT.AIMS.WebApp</description>
+    <releaseNotes>RCT.AIMS.WebApp</releaseNotes>
+    <copyright>Copyright © RedCypress 1996-2019 All rights reserved</copyright>
+    <tags>RCT.AIMS.WebApp</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="**\*.*" target="" exclude="" />
+  </files>
+</package>

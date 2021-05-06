@@ -1,0 +1,30 @@
+<nz-tabset>
+  <nz-tab nzTitle="Asset Issue">
+    <app-report-table
+      *ngIf="issueData$ | async as report"
+      [report]="report.asset"
+      [isIssue]="true"
+    ></app-report-table>
+  </nz-tab>
+  <nz-tab nzTitle="Asset Returned">
+    <app-report-table
+      *ngIf="returnData$ | async as report"
+      [report]="report.asset"
+      [isIssue]="false"
+    ></app-report-table>
+  </nz-tab>
+  <nz-tab nzTitle="Mobile Issued">
+    <app-report-table
+      *ngIf="issueData$ | async as report"
+      [report]="report.mobile"
+      [isIssue]="true"
+    ></app-report-table>
+  </nz-tab>
+  <nz-tab nzTitle="Mobile Return">
+    <app-report-table
+      *ngIf="returnData$ | async as report"
+      [report]="report.mobile"
+      [isIssue]="false"
+    ></app-report-table>
+  </nz-tab>
+</nz-tabset>

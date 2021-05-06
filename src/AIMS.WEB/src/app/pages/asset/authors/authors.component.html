@@ -1,0 +1,9 @@
+<app-table
+  title="Asset Author"
+  [metaList]="metaList"
+  [listOfData]="authors$ | async"
+  [message]="message$ | async"
+  (create)="save($event)"
+  (update)="save($event)"
+  (delete)="delete($event)"
+></app-table>

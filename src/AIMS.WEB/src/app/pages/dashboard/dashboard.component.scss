@@ -1,0 +1,53 @@
+.card-body {
+  display: flex;
+
+  .info {
+    flex: 1;
+
+    h3 {
+      font-size: 30px;
+      line-height: 34px;
+      margin-bottom: .5rem;
+    }
+  }
+
+  .icon {
+    font-size: 44px;
+  }
+}
+
+.chart-section {
+  margin-top: 8px;
+}
+
+
+.detail {
+  height: 190px;
+  overflow: auto;
+}
+
+/* Text Colors */
+.text-primary {
+  color: #008cff!important;
+}
+.text-success {
+  color: #15ca20!important;
+}
+.text-info {
+  color: #0dceec!important;
+}
+.text-secondary {
+  color: #75808a!important;
+}
+.text-danger {
+  color: #fd3550!important;
+}
+.text-dark {
+  color: #223035!important;
+}
+.text-warning {
+  color: #ff9700!important;
+}
+.text-light {
+  color: #e9eaea!important;
+}

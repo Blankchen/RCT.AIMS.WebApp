@@ -1,0 +1,44 @@
+<div *ngIf="summary$ | async as summary" nz-row nzGutter="8">
+  <div *ngFor="let item of cardList" nz-col nzSm="24" nzLg="12" nzXl="6">
+    <nz-card>
+      <div class="card-body">
+        <div class="info">
+          <h3 [ngClass]="item.class">{{summary[item.key]}}</h3>
+          <span>{{ item.title }}</span>
+        </div>
+        <div class="icon" [ngClass]="item.class">
+          <i nz-icon nzType="shop"></i>
+        </div>
+      </div>
+      <nz-progress [nzPercent]="100" [nzShowInfo]="false" [nzStrokeColor]="item.color">
+      </nz-progress>
+    </nz-card>
+  </div>
+</div>
+
+<div class="chart-section" nz-row nzGutter="8">
+  <div nz-col nzSm="24" nzLg="24">
+    <nz-card nzTitle="Asset Issued Summary">
+      <div [chart]="assetsChart$ | async"></div>
+      <div class="detail">
+        <nz-list nzBordered nzSize="small">
+          <nz-list-item *ngFor="let item of assetsChartData">
+            {{ item.bname }}:{{item.nissue }}
+          </nz-list-item>
+        </nz-list>
+      </div>
+    </nz-card>
+  </div>
+  <div nz-col nzSm="24" nzLg="24">
+    <nz-card nzTitle="Member Reading Summary">
+      <div [chart]="memberChart$ | async"></div>
+      <div class="detail">
+        <nz-list nzBordered nzSize="small">
+          <nz-list-item *ngFor="let item of memberChartData">
+            {{ item.mname }}:{{ item.ntrans }}
+          </nz-list-item>
+        </nz-list>
+      </div>
+    </nz-card>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div nz-row nzGutter="8">
+  <div nz-col nzMd="24" nzLg="16">
+    <nz-alert *ngIf="message$ | async" nzType="info" nzBanner [nzMessage]="message$ | async | json" nzCloseable></nz-alert>
+    <nz-card nzTitle="Return Asset">
+      <nz-alert nzBanner nzType="info" [nzMessage]="message">
+      </nz-alert>
+      <ng-template #message>
+        <span><strong>Info!</strong> Use <b>"Tab"</b> Key to execute</span>
+      </ng-template>
+
+      <form nz-form [formGroup]="returnForm" #f="ngForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">
+        <nz-form-item>
+          <nz-form-label nzFor="assetSearch" nzRequired>Asset Search (Rfid code)</nz-form-label>
+          <nz-form-control>
+            <nz-input-group [nzSuffix]="assetSearchTpl">
+              <input nz-input name="assetSearch" id="assetSearch" [(ngModel)]="assetSearch"
+                [ngModelOptions]="{standalone: true}" autocomplete="off"
+                tabindex="2" />
+            </nz-input-group>
+            <ng-template #assetSearchTpl>
+              <i nz-icon nz-tooltip class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                *ngIf="assetSearch" (click)="onAssetClear()"> </i>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row>
+          <div nz-col [nzSpan]="24" class="search-area">
+            <a nz-button (click)="reset()" tabindex="5">
+              <i nz-icon nzType="redo"></i>
+              Reset
+            </a>
+            <button type="submit" nz-button nzType="primary" [disabled]="!f.valid" tabindex="4">
+              <i nz-icon nzType="check-square"></i>
+              Return Asset
+            </button>
+          </div>
+        </div>
+      </form>
+    </nz-card>
+  </div>
+  <div nz-col nzMd="24" nzLg="8">
+    <nz-card nzTitle="Assets Return List">
+      <ng-container *ngFor="let item of assetChoose; let i = index ">
+        <nz-card class="mt-10" (click)="imageModal.clickImage(item.coverimage)" nzHoverable [nzCover]="coverTemplate">
+          <nz-card-meta [nzTitle]="item.assetname"></nz-card-meta>
+          <button (click)="removeAssetChoose(i)" class="card-close-btn" nz-button nzType="default"
+            nzShape="circle">
+            <i nz-icon nzType="close"></i>
+          </button>
+        </nz-card>
+        <ng-template #coverTemplate>
+          <img alt="cover image" [src]="'/' + item.coverimage" />
+        </ng-template>
+      </ng-container>
+    </nz-card>
+  </div>
+</div>
+
+<app-image-modal #imageModal></app-image-modal>
+<!-- <app-key-mapper (code)="autoFillRfid($event)"></app-key-mapper> -->

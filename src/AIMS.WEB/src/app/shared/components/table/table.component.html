@@ -1,0 +1,106 @@
+<div nz-row nzGutter="8">
+  <div nz-col nzMd="24">
+    <nz-alert *ngIf="message" nzType="info" nzBanner [nzMessage]="message | json" nzCloseable></nz-alert>
+    <nz-card [nzTitle]="title" [nzExtra]="addTemplate">
+      <nz-table #sortTable [nzFrontPagination]="false" [nzData]="listOfDisplayData">
+        <thead (nzSortChange)="sort($event)" nzSingleSort>
+          <tr>
+            <th *ngFor="let item of metaList" nzShowSort nzSortKey="item.key">
+              {{ item.title }}
+            </th>
+            <th nzAlign="right">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of sortTable.data">
+            <td *ngFor="let item of metaList">
+              <ng-container *ngIf="!editCache[data.id].edit; else editTpl">
+                <ng-container [ngSwitch]="item.type">
+                  <!-- image -->
+                  <ng-container *ngSwitchCase="'img'">
+                    <a (click)="imageModal.clickImage(data[item.key])">
+                      <img style="width: 120px" [alt]="item.title" [src]="'/' + data[item.key]">
+                    </a>
+                  </ng-container>
+                  <!-- link -->
+                  <ng-container *ngSwitchCase="'link'">
+                    <a *ngIf="data[item.key]" (click)="onclickLink(data)">
+                      link (click me)
+                    </a>
+                  </ng-container>
+                  <!-- default text -->
+                  <ng-container *ngSwitchDefault>
+                    {{ data[item.key] }}
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+              <ng-template #editTpl>
+                <ng-container [ngSwitch]="item.type">
+                  <!-- image file upload -->
+                  <ng-container *ngSwitchCase="'img'">
+                    <input type="file" (change)="handleFileInput(data.id,item.key, $event.target.files)">
+                  </ng-container>
+                  <!-- select option -->
+                  <ng-container *ngSwitchCase="'select'">
+                    <nz-select style="width: 120px;" nzPlaceHolder="Choose"
+                      [(ngModel)]="editCache[data.id].data[item.key]">
+                      <nz-option *ngFor="let option of item.optionList" [nzValue]="option.label"
+                        [nzLabel]="option.label">
+                      </nz-option>
+                    </nz-select>
+                  </ng-container>
+                  <!-- link -->
+                  <ng-container *ngSwitchCase="'link'">
+                    <a *ngIf="data[item.key]" (click)="onclickLink(data[item.key])">
+                      link (click me)
+                    </a>
+                  </ng-container>
+                  <!-- readonly  -->
+                  <ng-container *ngSwitchCase="'readonly'">
+                    {{ data[item.key] }}
+                  </ng-container>
+                  <!-- default input text -->
+                  <ng-container *ngSwitchDefault>
+                    <input type="text" nz-input maxlength="50" [(ngModel)]="editCache[data.id].data[item.key]" />
+                  </ng-container>
+                </ng-container>
+              </ng-template>
+            </td>
+            <td nzAlign="right">
+              <ng-container *ngIf="!editCache[data.id].edit; else saveTpl">
+                <button (click)="startEdit(data.id)" nz-button nzType="default">
+                  <i nz-icon nzType="edit"></i>
+                  Edit
+                </button>
+                <button nz-popconfirm nzTitle="Sure to delete?" (nzOnConfirm)="onDelete(data.id)" nz-button
+                  nzType="default">
+                  <i nz-icon nzType="delete"></i>
+                  Delete
+                </button>
+              </ng-container>
+              <ng-template #saveTpl>
+                <button (click)="saveEdit(data.id)" nz-button nzType="default">
+                  <i nz-icon nzType="save"></i>
+                  Save
+                </button>
+                <button (click)="cancelEdit(data.id)" nz-button nzType="default">
+                  <i nz-icon nzType="arrow-left"></i>
+                  Cancel
+                </button>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
+
+<ng-template #addTemplate>
+  <button (click)="addRow()" nz-button nzType="primary">
+    <i nz-icon nzType="plus-circle"></i>
+    Add
+  </button>
+</ng-template>
+
+<app-image-modal #imageModal></app-image-modal>

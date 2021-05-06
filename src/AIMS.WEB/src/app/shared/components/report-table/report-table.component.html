@@ -1,0 +1,28 @@
+<div nz-row nzGutter="8">
+  <div nz-col nzMd="24">
+    <nz-card>
+      <nz-table #reportTable [nzData]="report">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Member Name</th>
+            <th>{{ isIssue ? "Due Date" : "Returned On" }}</th>
+            <th>Assets</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of reportTable.data">
+            <td>{{ item.id }}</td>
+            <td>{{ item.membername }}</td>
+            <td>{{ isIssue ? item.duedate : item.returndate }}</td>
+            <td>
+              <ng-container *ngFor="let asset of item.assets">
+                {{ asset.assetname }}
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
