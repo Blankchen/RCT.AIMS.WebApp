@@ -1,6 +1,3 @@
-# Project: Asset Inventory Management System
-https://bigasia.atlassian.net/wiki/spaces/RCC/pages/148734686/Project+Asset+Inventory+Management+System
-
 ### docker 
 https://docs.microsoft.com/zh-tw/sql/linux/quickstart-install-connect-docker?view=sql-server-2017&pivots=cs1-bash
 
