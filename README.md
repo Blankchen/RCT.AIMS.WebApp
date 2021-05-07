@@ -1,3 +1,5 @@
+Doc: https://blank-chen.medium.com/rct-2020-10-project-asset-inventory-management-system-ec230e405111
+
 ### docker 
 https://docs.microsoft.com/zh-tw/sql/linux/quickstart-install-connect-docker?view=sql-server-2017&pivots=cs1-bash
 
